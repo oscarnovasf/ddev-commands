@@ -2,4 +2,4 @@
 
 hooks:
   post-start:
-    - exec: "fortune /usr/share/games/fortunes/es/varios.fortunes | cowsay -f stimpy"
+    - exec: "/usr/games/fortune /usr/share/games/fortunes/es/varios.fortunes | cowsay -f stimpy"
