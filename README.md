@@ -3,6 +3,8 @@ DDEV - Herramientas para Drupal
 
 >Nombre de máquina: ddev-drupal-tools
 
+[![add-on registry](https://img.shields.io/badge/DDEV-Add--on_Registry-blue)](https://addons.ddev.com)
+[![tests](https://github.com/oscarnovasf/ddev-commands/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/oscarnovasf/ddev-commands/actions/workflows/tests.yml?query=branch%3Amain)
 [![version][version-badge]][changelog]
 [![Licencia][license-badge]][license]
 [![Código de conducta][conduct-badge]][conduct]
