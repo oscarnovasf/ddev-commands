@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Ejecución PHPUnit pasando la suite que queremos ejecutar.
+## Usage: phpunit [suite]
+## Example: ddev phpunit unit
+
+php -d xdebug.remote_port=9003 /var/www/html/vendor/bin/phpunit -c /var/www/html/phpunit.xml --testsuite "$@"

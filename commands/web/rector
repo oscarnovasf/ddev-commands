@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Ejecutar rector.
+## Usage: rector [options]
+## Example: ddev rector
+
+/var/www/html/vendor/bin/rector process --config ./vendor/palantirnet/drupal-rector/rector.php "$@"

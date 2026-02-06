@@ -1,0 +1,29 @@
+name: ddev-commands
+version: 1.0.0
+description: "Conjunto de comandos personalizados para Drupal en DDEV."
+author: "Óscar Novás <hola@oscarnovas.com>"
+maintainer: "Óscar Novás <hola@oscarnovas.com>"
+license: "GPL-3.0"
+
+project_files:
+  - config.drupal-tools.yaml
+  - commands/web/behat
+  - commands/web/cr
+  - commands/web/grumphp
+  - commands/web/lineas
+  - commands/web/linkchecker
+  - commands/web/phpstan
+  - commands/web/phpunit
+  - commands/web/rector
+  - web-build/Dockerfile.ddev-drupal-tools
+
+global_files: []
+
+pre_install_actions: []
+
+post_install_actions:
+  - echo "Addon ddev-drupal-tools instalado correctamente."
+  - echo "Ejecuta 'ddev restart' para aplicar los cambios."
+
+removal_actions:
+  - echo "Addon ddev-drupal-tools eliminado."

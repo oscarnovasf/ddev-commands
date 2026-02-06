@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Ejecución de análisis de código (GrumPHP).
+## Usage: grumphp
+## Example: ddev grumphp
+
+/var/www/html/vendor/bin/grumphp run

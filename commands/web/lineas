@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Contar líneas de módulos y temas custom.
+## Usage: lineas
+## Example: ddev lineas
+
+echo && echo "Líneas de Módulos:" && echo && cloc /var/www/html/web/modules/custom
+echo && echo "Líneas de Themes:" && echo && cloc /var/www/html/web/themes/custom
+echo && echo "Líneas Globales:" && echo && cloc /var/www/html/web/modules/custom /var/www/html/web/themes/custom

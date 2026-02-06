@@ -1,7 +1,7 @@
-DDEV - Configuración para Drupal
+DDEV - Herramientas para Drupal
 ===
 
->Nombre de máquina: ddev-commands
+>Nombre de máquina: ddev-drupal-tools
 
 [![version][version-badge]][changelog]
 [![Licencia][license-badge]][license]
@@ -12,13 +12,169 @@ DDEV - Configuración para Drupal
 
 ## Información
 
+Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
+trabajo en proyectos [Drupal][drupal].
+
+Este addon proporciona **8 comandos** que cubren las necesidades más comunes
+del desarrollo en Drupal: limpieza de caché, ejecución de tests, análisis
+estático de código, refactorización automática, comprobación de enlaces rotos
+y métricas de código.
+
 ---
 
 ## Requisitos
 
+- [DDEV][ddev] instalado y configurado.
+- Un proyecto Drupal con la estructura estándar (`/web/modules/custom`,
+  `/web/themes/custom`).
+- [Composer][composer] con las dependencias de desarrollo necesarias según los
+  comandos que se vayan a utilizar:
+  - `behat/behat` para el comando `behat`.
+  - `phpstan/phpstan` para el comando `phpstan`.
+  - `phpunit/phpunit` para el comando `phpunit`.
+  - `rector/rector` y `palantirnet/drupal-rector` para el comando `rector`.
+  - `phpro/grumphp` para el comando `grumphp`.
+- Redis (opcional): el comando `cr` limpia Redis automáticamente si está
+  disponible.
+
 ---
 
 ## Instalación
+
+```bash
+ddev add-on get oscarnovasf/ddev-commands
+ddev restart
+```
+
+> Tras la instalación es necesario reiniciar DDEV para que se apliquen los
+> cambios en el contenedor.
+
+---
+
+## Comandos disponibles
+
+### `ddev cr` — Limpieza de caché
+
+Ejecuta `drush cr` para reconstruir la caché de Drupal. Si el servicio Redis
+está disponible, también vacía su caché de forma automática.
+
+```bash
+ddev cr
+```
+
+### `ddev behat` — Pruebas funcionales con Behat
+
+Ejecuta las pruebas funcionales definidas con [Behat][behat]. Acepta todos los
+argumentos que soporta Behat.
+
+```bash
+# Ejecutar todas las pruebas
+ddev behat
+
+# Ejecutar solo las pruebas con un tag específico
+ddev behat --tags=@smoke
+```
+
+### `ddev phpunit` — Tests unitarios
+
+Ejecuta [PHPUnit][phpunit] con soporte para Xdebug habilitado. Acepta como
+argumento el nombre de la suite que se desea ejecutar.
+
+```bash
+# Ejecutar todas las suites
+ddev phpunit
+
+# Ejecutar una suite específica
+ddev phpunit unit
+```
+
+### `ddev phpstan` — Análisis estático de código
+
+Ejecuta [PHPStan][phpstan] para realizar análisis estático del código PHP.
+Acepta opciones adicionales.
+
+```bash
+ddev phpstan
+```
+
+### `ddev rector` — Refactorización automática
+
+Ejecuta [Rector][rector] con la configuración de
+[Drupal Rector][drupal-rector] para modernizar y refactorizar el código
+automáticamente.
+
+```bash
+ddev rector
+```
+
+### `ddev grumphp` — Análisis de calidad de código
+
+Ejecuta [GrumPHP][grumphp] para comprobar la calidad del código según las
+reglas configuradas en el proyecto.
+
+```bash
+ddev grumphp
+```
+
+### `ddev linkchecker` — Comprobación de enlaces rotos
+
+Revisa todos los enlaces del sitio en busca de URLs rotas. Genera un informe
+en HTML.
+
+```bash
+ddev linkchecker
+```
+
+Características:
+- Comprueba enlaces externos.
+- Timeout de 10 segundos por enlace.
+- 30 hilos en paralelo.
+- Genera un informe en `html/reporte-<nombre-del-sitio>.html`.
+- Ignora enlaces `mailto:` y archivos CSS/JS.
+
+### `ddev lineas` — Métricas de código
+
+Cuenta las líneas de código de los módulos y temas custom del proyecto
+utilizando [cloc][cloc].
+
+```bash
+ddev lineas
+```
+
+Analiza las carpetas:
+- `/web/modules/custom`
+- `/web/themes/custom`
+
+---
+
+## Estructura del proyecto
+
+```
+ddev-commands/
+├── commands/
+│   └── web/
+│       ├── behat            # Pruebas funcionales
+│       ├── cr               # Limpieza de caché + Redis
+│       ├── grumphp          # Análisis de calidad
+│       ├── lineas           # Métricas de código
+│       ├── linkchecker      # Enlaces rotos
+│       ├── phpstan          # Análisis estático
+│       ├── phpunit          # Tests unitarios
+│       └── rector           # Refactorización
+├── web-build/
+│   └── Dockerfile.ddev-drupal-tools
+├── config.drupal-tools.yaml
+└── install.yaml
+```
+
+---
+
+## Desinstalación
+
+```bash
+ddev add-on remove ddev-commands
+ddev restart
+```
 
 ---
 ⌨️ con ❤️ por [Óscar Novás][mi-web] 😊
@@ -28,13 +184,24 @@ DDEV - Configuración para Drupal
 [version]: v1.0.0
 [version-badge]: https://img.shields.io/badge/Versión-1.0.0-blue.svg
 
-[license]: LICENSE.md
+[license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"
 
-[conduct]: CODE_OF_CONDUCT.md
+[conduct]: .github/CODE_OF_CONDUCT.md
 [conduct-badge]: https://img.shields.io/badge/C%C3%B3digo%20de%20Conducta-2.0-4baaaa.svg "Código de conducta"
 
 [changelog]: CHANGELOG.md "Histórico de cambios"
 
 [donate-badge]: https://img.shields.io/badge/Donaci%C3%B3n-PayPal-red.svg
 [donate-url]: https://paypal.me/oscarnovasf "Haz una donación"
+
+[ddev]: https://ddev.readthedocs.io/
+[drupal]: https://www.drupal.org/
+[composer]: https://getcomposer.org/
+[behat]: https://docs.behat.org/
+[phpunit]: https://phpunit.de/
+[phpstan]: https://phpstan.org/
+[rector]: https://getrector.com/
+[drupal-rector]: https://github.com/palantirnet/drupal-rector
+[grumphp]: https://github.com/phpro/grumphp
+[cloc]: https://github.com/AlDanial/cloc

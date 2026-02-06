@@ -1,0 +1,19 @@
+#ddev-generated
+
+RUN apt-get update && apt-get install -y \
+    cloc \
+    python3-bs4 \
+    python3-dnspython \
+    python3-requests \
+    pipx \
+    sysvbanner \
+    figlet \
+    cowsay \
+    fortune \
+    fortunes \
+    fortunes-es \
+    fortunes-es-off \
+    && pipx ensurepath \
+    && pipx install --system-site-packages linkchecker \
+    && ln -sf /root/.local/bin/linkchecker /usr/local/bin/linkchecker \
+    && apt-get clean

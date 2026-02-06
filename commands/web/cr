@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Ejecuta 'drush cr' y limpia Redis si está disponible.
+## Usage: cr
+## Example: ddev cr
+
+drush cr
+
+if command -v redis-cli &> /dev/null && redis-cli -h redis ping &> /dev/null; then
+  redis-cli -h redis flushall
+  echo "Cache de Redis limpiada."
+fi

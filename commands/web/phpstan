@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#ddev-generated
+## Description: Ejecución de análisis estático de código (PHPStan).
+## Usage: phpstan [options]
+## Example: ddev phpstan
+
+/var/www/html/vendor/bin/phpstan analyse "$@"
