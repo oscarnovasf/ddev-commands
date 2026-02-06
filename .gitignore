@@ -1,0 +1,10 @@
+# Archivos de diferentes IDEs.
+/.idea/
+/.vscode/**
+!/.vscode/tasks.json
+*.un~
+
+# Archivos del SO.
+.DS_Store
+[Tt]humbs.db
+._*

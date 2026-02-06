@@ -1,0 +1,378 @@
+{
+  // Ver https://go.microsoft.com/fwlink/?LinkId=733558
+  // para más documentación sobre el formato de este archivo.
+  "version": "2.0.0",
+  "tasks": [
+
+    /* *************************************************************************
+     * TAREAS PARA ACTUALIZAR LOS SNIPPETS.
+     **************************************************************************/
+
+    {
+      "label": "hidden: Actualizar snippets (Clases)",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/drupal_clases.code-snippets -o .vscode/drupal_clases.code-snippets",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "snippets",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "file-code", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar snippets (Formularios)",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/drupal_form.code-snippets -o .vscode/drupal_form.code-snippets",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "snippets",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "file-code", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar snippets (JavaScript)",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/drupal_js.code-snippets -o .vscode/drupal_js.code-snippets",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "snippets",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "file-code", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar snippets (Routing)",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/drupal_routing.code-snippets -o .vscode/drupal_routing.code-snippets",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "snippets",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "file-code", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar snippets (Uses)",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/drupal_uses.code-snippets -o .vscode/drupal_uses.code-snippets",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "snippets",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "file-code", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar snippets (Utils)",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/utils.code-snippets -o .vscode/utils.code-snippets",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "snippets",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "file-code", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "- Actualizar snippets",
+      "type": "shell",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never",
+      },
+      "dependsOn": [
+        "hidden: Actualizar snippets (Clases)",
+        "hidden: Actualizar snippets (Formularios)",
+        "hidden: Actualizar snippets (JavaScript)",
+        "hidden: Actualizar snippets (Routing)",
+        "hidden: Actualizar snippets (Uses)",
+        "hidden: Actualizar snippets (Utils)"
+      ],
+      "icon": { "id": "file-code", "color": "terminal.ansiBlue"}
+    },
+
+    /* *************************************************************************
+     * TAREAS PARA ACTUALIZAR LA CONFIGURACIÓN.
+     **************************************************************************/
+
+    {
+      "label": "hidden: Actualizar cspell.json",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/cspell.json -o .vscode/cspell.json",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar extensions.json",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/extensions.json -o .vscode/extensions.json",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar launch.json",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/launch.json -o .vscode/launch.json",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar settings.json",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/settings.json -o .vscode/settings.json",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "Actualizar tasks.json",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/tasks.json -o .vscode/tasks.json",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    /* Tarea duplicada para poder usarla en Activitus Bar */
+    {
+      "label": "hidden_actualizar_tasks_json",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/tasks.json -o .vscode/tasks.json",
+      "presentation": {
+        "reveal": "silent",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar .editorconfig",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.editorconfig -o .editorconfig",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar copilot-instructions.md",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/copilot-instructions.md -o .vscode/copilot-instructions.md",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar copilot-commit-instructions.md",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/copilot-commit-instructions.md -o .vscode/copilot-commit-instructions.md",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "- Actualizar configuraciones",
+      "type": "shell",
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never",
+      },
+      "dependsOn": [
+        "hidden: Actualizar cspell.json",
+        "hidden: Actualizar extensions.json",
+        "hidden: Actualizar launch.json",
+        "hidden: Actualizar settings.json",
+        "hidden: Actualizar .editorconfig",
+        "hidden: Actualizar copilot-instructions.md",
+        "hidden: Actualizar copilot-commit-instructions.md",
+        "Actualizar tasks.json"
+      ],
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "- Descargar sftp.json ",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/.vscode/sftp.json -o .vscode/sftp.json",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "settings",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "settings-gear", "color": "terminal.ansiBlue"}
+    },
+
+    /* *************************************************************************
+     * TAREAS PARA ACTUALIZAR DOCUMENTACIÓN.
+     **************************************************************************/
+
+    {
+      "label": "hidden: Actualizar grumphp.yml",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/grumphp.yml -o grumphp.yml",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "documentacion",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "files", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar phpcs.xml",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/phpcs.xml -o phpcs.xml",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "documentacion",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "files", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar phpmd.xml",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/phpmd.xml -o phpmd.xml",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "documentacion",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "files", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "hidden: Actualizar phpstan.neon",
+      "type": "shell",
+      "command": "curl https://raw.githubusercontent.com/oscarnovasf/VSCode-settings/master/phpstan.neon -o phpstan.neon",
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "group": "documentacion",
+        "close": true,
+        "clear": true
+      },
+      "icon": { "id": "files", "color": "terminal.ansiBlue"}
+    },
+
+    {
+      "label": "- Actualizar documentación",
+      "type": "shell",
+      "osx": {
+        "command": "find ./ -name '*.*-e' -type f -delete",
+      },
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never",
+      },
+      "dependsOn": [
+        "hidden: Actualizar grumphp.yml",
+        "hidden: Actualizar phpcs.xml",
+        "hidden: Actualizar phpmd.xml",
+        "hidden: Actualizar phpstan.neon"
+      ],
+      "icon": { "id": "files", "color": "terminal.ansiBlue"}
+    },
+
+  ],
+
+  /* ***************************************************************************
+   * VARIABLES USADAS EN LAS TAREAS ANTERIORES.
+   * Ej. de uso => "mkdir -p ${input:destino}"
+   ****************************************************************************/
+  "inputs": [
+    {
+      "id": "destino",
+      "description": "Destino:",
+      "type": "promptString",
+      "default": "src/lib/general"
+    },
+    {
+      "id": "namespace",
+      "description": "NameSpace:",
+      "type": "promptString",
+      "default": "${workspaceFolderBasename}"
+    }
+  ]
+
+}
