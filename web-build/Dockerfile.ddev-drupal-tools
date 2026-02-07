@@ -18,4 +18,10 @@ RUN apt-get update && apt-get install -y \
     && ln -sf /root/.local/bin/linkchecker /usr/local/bin/linkchecker \
     && apt-get clean
 
+RUN mkdir -p /etc/apt/keyrings \
+    && curl -fsSL https://repo.charm.sh/apt/gpg.key | gpg --dearmor -o /etc/apt/keyrings/charm.gpg \
+    && echo "deb [signed-by=/etc/apt/keyrings/charm.gpg] https://repo.charm.sh/apt/ * *" > /etc/apt/sources.list.d/charm.list \
+    && apt-get update && apt-get install -y gum \
+    && apt-get clean
+
 RUN npm install -g sass
