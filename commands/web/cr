@@ -1,6 +1,6 @@
 #!/bin/bash
-
 #ddev-generated
+
 ## Description: Ejecuta 'drush cr' y limpia Redis si está disponible.
 ## Usage: cr
 ## Example: ddev cr

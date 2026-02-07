@@ -1,8 +1,46 @@
 #!/bin/bash
-
 #ddev-generated
+
 ## Description: Ejecución PHPUnit pasando la suite que queremos ejecutar.
 ## Usage: phpunit [suite]
 ## Example: ddev phpunit unit
+
+# ##############################################################################
+# VARIABLES AUXILIARES.
+# ##############################################################################
+
+# Colores.
+RESET="\033[0m"
+YELLOW="\033[0;33m"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+
+################################################################################
+# FUNCIONES AUXILIARES.
+################################################################################
+
+# Simplemente imprime una línea por pantalla.
+function linea() {
+  echo '--------------------------------------------------------------------------------'
+}
+
+################################################################################
+# COMPROBACIONES PREVIAS.
+################################################################################
+
+if [ ! -f /var/www/html/vendor/bin/phpunit ]; then
+  clear
+  echo " "
+  linea
+  echo -e " ${RED}Error: PHPUnit no está instalado.${RESET}"
+  echo -e " ${YELLOW}Ejecuta: ddev composer require --dev phpunit/phpunit${RESET}"
+  linea
+  echo " "
+  exit 1
+fi
+
+################################################################################
+# CUERPO PRINCIPAL DEL SCRIPT.
+################################################################################
 
 php -d xdebug.remote_port=9003 /var/www/html/vendor/bin/phpunit -c /var/www/html/phpunit.xml --testsuite "$@"

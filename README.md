@@ -35,7 +35,7 @@ y métricas de código.
   - `phpstan/phpstan` para el comando `phpstan`.
   - `phpunit/phpunit` para el comando `phpunit`.
   - `rector/rector` y `palantirnet/drupal-rector` para el comando `rector`.
-  - `phpro/grumphp` para el comando `grumphp`.
+  - `phpro/grumphp-shim` para el comando `grumphp`.
 - Redis (opcional): el comando `cr` limpia Redis automáticamente si está
   disponible.
 
@@ -131,7 +131,7 @@ Características:
 - Comprueba enlaces externos.
 - Timeout de 10 segundos por enlace.
 - 30 hilos en paralelo.
-- Genera un informe en `html/reporte-<nombre-del-sitio>.html`.
+- Genera un informe en `reporte-<nombre-del-sitio>.html` en la raíz del proyecto.
 - Ignora enlaces `mailto:` y archivos CSS/JS.
 
 ### `ddev lineas` — Métricas de código
@@ -205,5 +205,5 @@ ddev restart
 [phpstan]: https://phpstan.org/
 [rector]: https://getrector.com/
 [drupal-rector]: https://github.com/palantirnet/drupal-rector
-[grumphp]: https://github.com/phpro/grumphp
+[grumphp]: https://github.com/phpro/grumphp-shim
 [cloc]: https://github.com/AlDanial/cloc

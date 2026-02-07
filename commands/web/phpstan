@@ -1,8 +1,46 @@
 #!/bin/bash
-
 #ddev-generated
+
 ## Description: Ejecución de análisis estático de código (PHPStan).
 ## Usage: phpstan [options]
 ## Example: ddev phpstan
+
+# ##############################################################################
+# VARIABLES AUXILIARES.
+# ##############################################################################
+
+# Colores.
+RESET="\033[0m"
+YELLOW="\033[0;33m"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+
+################################################################################
+# FUNCIONES AUXILIARES.
+################################################################################
+
+# Simplemente imprime una línea por pantalla.
+function linea() {
+  echo '--------------------------------------------------------------------------------'
+}
+
+################################################################################
+# COMPROBACIONES PREVIAS.
+################################################################################
+
+if [ ! -f /var/www/html/vendor/bin/phpstan ]; then
+  clear
+  echo " "
+  linea
+  echo -e " ${RED}Error: PHPStan no está instalado.${RESET}"
+  echo -e " ${YELLOW}Ejecuta: ddev composer require --dev phpstan/phpstan${RESET}"
+  linea
+  echo " "
+  exit 1
+fi
+
+################################################################################
+# CUERPO PRINCIPAL DEL SCRIPT.
+################################################################################
 
 /var/www/html/vendor/bin/phpstan analyse "$@"

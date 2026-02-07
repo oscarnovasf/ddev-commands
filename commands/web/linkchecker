@@ -1,6 +1,6 @@
 #!/bin/bash
-
 #ddev-generated
+
 ## Description: Revisar enlaces rotos en el sitio.
 ## Usage: linkchecker
 ## Example: ddev linkchecker
@@ -11,7 +11,7 @@ linkchecker \
   --check-extern \
   --timeout=10 \
   --threads=30 \
-  --file-output=html/reporte-${DDEV_SITENAME}.html \
+  --file-output=reporte-${DDEV_SITENAME}.html \
   --ignore-url="^mailto:" \
   --ignore-url=".*\.(css|js)$" \
   --user-agent="Mozilla/5.0 (compatible; linkchecker)" \
