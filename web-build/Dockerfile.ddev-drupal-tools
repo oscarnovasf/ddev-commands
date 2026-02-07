@@ -17,3 +17,5 @@ RUN apt-get update && apt-get install -y \
     && pipx install --system-site-packages linkchecker \
     && ln -sf /root/.local/bin/linkchecker /usr/local/bin/linkchecker \
     && apt-get clean
+
+RUN npm install -g sass
