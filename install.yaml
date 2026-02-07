@@ -15,6 +15,7 @@ project_files:
   - commands/web/phpstan
   - commands/web/phpunit
   - commands/web/rector
+  - commands/web/sass
   - web-build/Dockerfile.ddev-drupal-tools
 
 global_files: []

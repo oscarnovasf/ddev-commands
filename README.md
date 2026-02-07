@@ -15,10 +15,10 @@ DDEV - Herramientas para Drupal
 Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
 trabajo en proyectos [Drupal][drupal].
 
-Este addon proporciona **8 comandos** que cubren las necesidades más comunes
+Este addon proporciona **9 comandos** que cubren las necesidades más comunes
 del desarrollo en Drupal: limpieza de caché, ejecución de tests, análisis
-estático de código, refactorización automática, comprobación de enlaces rotos
-y métricas de código.
+estático de código, refactorización automática, compilación de SCSS,
+comprobación de enlaces rotos y métricas de código.
 
 ---
 
@@ -132,6 +132,21 @@ Características:
 - Genera un informe en `reporte-<nombre-del-sitio>.html` en la raíz del proyecto.
 - Ignora enlaces `mailto:` y archivos CSS/JS.
 
+### `ddev sass` — Compilación de SCSS
+
+Compila los archivos SCSS de un theme custom a CSS comprimido. Detecta
+automáticamente los themes que contienen una carpeta `scss/` y permite
+seleccionar cuál compilar mediante un menú interactivo.
+
+```bash
+ddev sass
+```
+
+Opciones de modo:
+- **Compilar** — compila una vez y termina.
+- **Watch** — se queda escuchando cambios en los archivos SCSS y recompila
+  automáticamente.
+
 ### `ddev lineas` — Métricas de código
 
 Cuenta las líneas de código de los módulos y temas custom del proyecto
@@ -160,7 +175,8 @@ ddev-commands/
 │       ├── linkchecker      # Enlaces rotos
 │       ├── phpstan          # Análisis estático
 │       ├── phpunit          # Tests unitarios
-│       └── rector           # Refactorización
+│       ├── rector           # Refactorización
+│       └── sass             # Compilación SCSS
 ├── web-build/
 │   └── Dockerfile.ddev-drupal-tools
 ├── config.drupal-tools.yaml
@@ -181,8 +197,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.0.0
-[version-badge]: https://img.shields.io/badge/Versión-1.0.0-blue.svg
+[version]: v1.1.0
+[version-badge]: https://img.shields.io/badge/Versión-1.1.0-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"

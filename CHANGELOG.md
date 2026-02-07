@@ -5,6 +5,21 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 * ## [Sin versión]
 
 ---
+* ## [v1.1.0] - 2026-02-07
+  > Nuevo comando sass, mejoras en el Dockerfile y correcciones.
+
+  * #### Añadido:
+    - Comando `ddev sass`: compilación de SCSS a CSS comprimido con selector
+      interactivo de theme y modo (compilar/watch) mediante gum.
+    - Instalación de [gum](https://github.com/charmbracelet/gum) en el
+      Dockerfile para menús interactivos en los comandos.
+    - Documentación completa del proyecto en README.md.
+
+  * #### Cambios:
+    - Comando `ddev linkchecker`: el informe ahora se genera en la raíz del
+      proyecto (`reporte-<sitio>.html`) en lugar de en la subcarpeta `html/`.
+
+---
 * ## [v1.0.0] - 2026-02-06
   > Primera versión del addon con comandos personalizados para Drupal en DDEV.
 

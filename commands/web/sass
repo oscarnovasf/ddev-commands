@@ -1,0 +1,78 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Compilar SCSS de un theme custom.
+## Usage: sass
+## Example: ddev sass
+
+# ##############################################################################
+# VARIABLES AUXILIARES.
+# ##############################################################################
+
+# Colores.
+RESET="\033[0m"
+YELLOW="\033[0;33m"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+
+THEMES_DIR="/var/www/html/web/themes/custom"
+
+################################################################################
+# FUNCIONES AUXILIARES.
+################################################################################
+
+# Simplemente imprime una línea por pantalla.
+function linea() {
+  echo '--------------------------------------------------------------------------------'
+}
+
+################################################################################
+# COMPROBACIONES PREVIAS.
+################################################################################
+
+# Buscar themes que contengan una carpeta scss.
+themes=()
+for dir in "$THEMES_DIR"/*/; do
+  if [ -d "${dir}scss" ]; then
+    themes+=("$(basename "$dir")")
+  fi
+done
+
+if [ ${#themes[@]} -eq 0 ]; then
+  clear
+  echo " "
+  linea
+  echo -e " ${RED}Error: No se han encontrado themes con carpeta scss/.${RESET}"
+  echo -e " ${YELLOW}Ruta: ${THEMES_DIR}${RESET}"
+  linea
+  echo " "
+  exit 1
+fi
+
+################################################################################
+# CUERPO PRINCIPAL DEL SCRIPT.
+################################################################################
+
+# Seleccionar theme.
+if [ ${#themes[@]} -eq 1 ]; then
+  theme="${themes[0]}"
+else
+  theme=$(gum choose --header="Selecciona un theme:" "${themes[@]}")
+  if [ -z "$theme" ]; then
+    exit 1
+  fi
+fi
+
+# Seleccionar modo.
+mode=$(gum choose --header="Modo de compilación:" "Compilar" "Watch")
+if [ -z "$mode" ]; then
+  exit 1
+fi
+
+cd "${THEMES_DIR}/${theme}" || exit 1
+
+if [ "$mode" = "Watch" ]; then
+  sass -w ./scss/:./css/ --style compressed
+else
+  sass ./scss/:./css/ --style compressed
+fi
