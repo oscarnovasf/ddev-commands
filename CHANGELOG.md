@@ -5,6 +5,14 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 * ## [Sin versión]
 
 ---
+* ## [v1.1.1] - 2026-02-07
+  > Corrección de ruta en el hook post-start.
+
+  * #### Correcciones:
+    - Corregida la ruta del comando `cowsay` en el hook post-start
+      (`/usr/games/cowsay`).
+
+---
 * ## [v1.1.0] - 2026-02-07
   > Nuevo comando sass, mejoras en el Dockerfile y correcciones.
 
