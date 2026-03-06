@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+#ddev-generated
+
+## Description: Iniciar el sitio Drupal en el navegador utilizando un enlace de inicio de sesión único.
+## Usage: run
+## Example: ddev run
+
+ddev launch $(ddev drush uli)
