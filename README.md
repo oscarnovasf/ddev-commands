@@ -15,8 +15,9 @@ DDEV - Herramientas para Drupal
 Conjunto de comandos personalizados para [DDEV][ddev] que facilitan el flujo de
 trabajo en proyectos [Drupal][drupal].
 
-Este addon proporciona **9 comandos** que cubren las necesidades más comunes
+Este addon proporciona **10 comandos** que cubren las necesidades más comunes
 del desarrollo en Drupal:
+- apertura del sitio en el navegador con login automático
 - limpieza de caché
 - ejecución de tests
 - análisis estático de código
@@ -57,6 +58,16 @@ ddev restart
 ---
 
 ## Comandos disponibles
+
+### `ddev run` — Abrir el sitio en el navegador
+
+Abre el sitio Drupal en el navegador utilizando un enlace de inicio de sesión
+único generado con `drush uli`. Permite acceder directamente como administrador
+sin necesidad de introducir credenciales.
+
+```bash
+ddev run
+```
 
 ### `ddev cr` — Limpieza de caché
 
@@ -173,7 +184,7 @@ Analiza las carpetas:
 ddev-commands/
 ├── commands/
 │   ├── host/
-│   │   └── run              # Abrir el proyecto en el Explorador por defecto
+│   │   └── run              # Abrir el sitio en el navegador con login automático
 │   └── web/
 │       ├── behat            # Pruebas funcionales
 │       ├── cr               # Limpieza de caché + Redis
