@@ -21,8 +21,9 @@
 
 3. **Crear la release en GitHub**
 
-   > Obtenemos las notas a partir de todos los commits desde el tag anterior.
-   
+   > Si la release ya está documentada en el CHANGELOG.md obtenemos de ahí la información para la release,
+     si no lo está obtenemos las notas a partir de todos los commits desde el tag anterior.
+
    ```bash
    gh release create vX.Y.Z --title "vX.Y.Z" --notes "## Novedades
 

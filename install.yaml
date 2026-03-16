@@ -1,5 +1,5 @@
 name: ddev-commands
-version: 1.0.0
+version: 1.1.2
 description: "Conjunto de comandos personalizados para Drupal en DDEV."
 author: "Óscar Novás <hola@oscarnovas.com>"
 maintainer: "Óscar Novás <hola@oscarnovas.com>"

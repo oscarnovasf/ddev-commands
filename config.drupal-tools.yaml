@@ -1,5 +1,8 @@
 #ddev-generated
 
+share_default_provider: cloudflared
 hooks:
   post-start:
     - exec: "/usr/games/fortune /usr/share/games/fortunes/es/varios.fortunes | /usr/games/cowsay -f stimpy"
+  pre-share:
+    - exec-host: echo "URL a compartir -> ${DDEV_SHARE_URL}"

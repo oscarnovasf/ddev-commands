@@ -204,8 +204,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.1.1
-[version-badge]: https://img.shields.io/badge/Versión-1.1.1-blue.svg
+[version]: v1.1.2
+[version-badge]: https://img.shields.io/badge/Versión-1.1.2-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"

@@ -5,6 +5,20 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 * ## [Sin versión]
 
 ---
+* ## [v1.1.2] - 2026-03-16
+  > Soporte cloudflared y mejoras internas.
+
+  * #### Añadido:
+    - Soporte para compartir el sitio mediante `cloudflared` como proveedor
+      por defecto (`share_default_provider: cloudflared`).
+    - Hook `pre-share` que muestra la URL generada al ejecutar `ddev share`.
+    - Comando de host `run` para abrir el proyecto en el explorador de archivos.
+
+  * #### Cambios:
+    - Limpieza interna: eliminada la variable `GREEN` no utilizada en varios
+      scripts.
+
+---
 * ## [v1.1.1] - 2026-02-07
   > Corrección de ruta en el hook post-start.
 
