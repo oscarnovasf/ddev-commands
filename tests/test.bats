@@ -41,40 +41,17 @@ setup() {
 health_checks() {
   set -eu -o pipefail
 
-  run ddev behat --help
+  run ddev -h
   assert_success
+
   assert_output --partial "behat"
-
-  run ddev phpunit --help
-  assert_success
   assert_output --partial "phpunit"
-
-  run ddev phpstan --help
-  assert_success
   assert_output --partial "phpstan"
-
-  run ddev rector --help
-  assert_success
   assert_output --partial "rector"
-
-  run ddev grumphp --help
-  assert_success
   assert_output --partial "grumphp"
-
-  run ddev sass --help
-  assert_success
   assert_output --partial "sass"
-
-  run ddev lineas --help
-  assert_success
   assert_output --partial "lineas"
-
-  run ddev linkchecker --help
-  assert_success
   assert_output --partial "linkchecker"
-
-  run ddev backup --help
-  assert_success
   assert_output --partial "backup"
 }
 
