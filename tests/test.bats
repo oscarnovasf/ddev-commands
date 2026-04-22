@@ -39,17 +39,43 @@ setup() {
 }
 
 health_checks() {
-  # Do something useful here that verifies the add-on
+  set -eu -o pipefail
 
-  # You can check for specific information in headers:
-  # run curl -sfI https://${PROJNAME}.ddev.site
-  # assert_output --partial "HTTP/2 200"
-  # assert_output --partial "test_header"
-
-  # Or check if some command gives expected output:
-  DDEV_DEBUG=true run ddev launch
+  run ddev behat --help
   assert_success
-  assert_output --partial "FULLURL https://${PROJNAME}.ddev.site"
+  assert_output --partial "behat"
+
+  run ddev phpunit --help
+  assert_success
+  assert_output --partial "phpunit"
+
+  run ddev phpstan --help
+  assert_success
+  assert_output --partial "phpstan"
+
+  run ddev rector --help
+  assert_success
+  assert_output --partial "rector"
+
+  run ddev grumphp --help
+  assert_success
+  assert_output --partial "grumphp"
+
+  run ddev sass --help
+  assert_success
+  assert_output --partial "sass"
+
+  run ddev lineas --help
+  assert_success
+  assert_output --partial "lineas"
+
+  run ddev linkchecker --help
+  assert_success
+  assert_output --partial "linkchecker"
+
+  run ddev backup --help
+  assert_success
+  assert_output --partial "backup"
 }
 
 teardown() {

@@ -5,6 +5,18 @@ Todos los cambios notables de este proyecto se documentarán en este archivo.
 * ## [Sin versión]
 
 ---
+* ## [v1.2.0] - 2026-04-22
+  > Nuevo comando backup de base de datos.
+
+  * #### Añadido:
+    - Comando `ddev backup`: crea un backup de la base de datos en la carpeta
+      `_backups/` del proyecto, ejecutando previamente `drush cr` para volcar
+      la caché.
+
+  + ### Eliminado:
+    - Carpeta `tests/testdata/` eliminada al no ser necesaria para los tests.
+
+---
 * ## [v1.1.2] - 2026-03-16
   > Soporte cloudflared y mejoras internas.
 

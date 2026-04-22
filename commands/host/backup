@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+#ddev-generated
+
+## Description: Crea un backup de la base de datos con volcado de cache.
+## Usage: backup
+## Example: ddev backup
+
+set -e
+
+PROJECT_ROOT=$(ddev describe --json | grep -o '"rootdir": *"[^"]*"' | cut -d'"' -f4)
+BACKUP_DIR="${PROJECT_ROOT}/_backups"
+PROJECT_NAME="${DDEV_PROJECT}"
+TIMESTAMP=$(date +"%Y.%m.%d_%H.%M")
+BACKUP_FILE="${PROJECT_NAME}_${TIMESTAMP}.sql.gz"
+
+mkdir -p "$BACKUP_DIR"
+
+ddev drush cr
+
+ddev export-db --file="${BACKUP_DIR}/${BACKUP_FILE}"
+
+echo "Backup creado: ${BACKUP_DIR}/${BACKUP_FILE}"
