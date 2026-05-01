@@ -1,3 +1,4 @@
+// #ddev-generated
 /**
  * @file
  * Configuración global para los tests de Playwright.

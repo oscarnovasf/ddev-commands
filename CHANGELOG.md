@@ -2,6 +2,14 @@
 ---
 Todos los cambios notables de este proyecto se documentarán en este archivo.
 
+* ## [v1.3.3] - 2026-05-01
+  > Firma de archivos y compatibilidad con actualizaciones.
+
+  * #### Correcciones:
+    - Añadida la firma `#ddev-generated` a todos los archivos de los agentes para permitir que DDEV los sobrescriba y gestione correctamente durante las actualizaciones.
+    - Mejora en la estabilidad del instalador al manejar archivos preexistentes.
+
+---
 * ## [v1.3.2] - 2026-05-01
   > Fix definitivo para la sincronización de agentes.
 

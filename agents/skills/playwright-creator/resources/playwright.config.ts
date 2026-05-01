@@ -1,3 +1,4 @@
+// #ddev-generated
 import { defineConfig, devices } from '@playwright/test';
 import { Environment } from './tests/playwright/_config/environment';
 import dotenv from 'dotenv';

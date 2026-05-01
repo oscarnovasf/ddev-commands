@@ -1,3 +1,4 @@
+// #ddev-generated
 /**
  * @file
  * Helpers compartidos para los tests de Playwright.
