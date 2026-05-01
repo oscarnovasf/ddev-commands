@@ -2,7 +2,16 @@
 ---
 Todos los cambios notables de este proyecto se documentarán en este archivo.
 
-* ## [Sin versión]
+* ## [v1.3.0] - 2026-05-01
+  > Sistema de agentes/skills y mejoras en la instalación.
+
+  * #### Añadido:
+    - Sincronización automática de la carpeta `.agents/` durante la instalación.
+    - Integración de `rsync` en `post_install_actions` para actualizar skills sin sobrescribir configuraciones locales del usuario.
+    - Nueva skill de Playwright para automatización de tests E2E.
+
+  * #### Cambios:
+    - Limpieza de `.gitignore` (eliminada excepción de `.vscode/tasks.json`).
 
 ---
 * ## [v1.2.0] - 2026-04-22
