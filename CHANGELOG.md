@@ -2,6 +2,14 @@
 ---
 Todos los cambios notables de este proyecto se documentarán en este archivo.
 
+* ## [v1.3.4] - 2026-05-01
+  > Corrección de rutas en la instalación.
+
+  * #### Correcciones:
+    - Ajustadas las rutas en `post_install_actions` para detectar correctamente si el script se ejecuta desde la raíz del proyecto o desde la carpeta `.ddev`.
+    - Mejora en la robustez de la sincronización de la carpeta `.agents/`.
+
+---
 * ## [v1.3.3] - 2026-05-01
   > Firma de archivos y compatibilidad con actualizaciones.
 

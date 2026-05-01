@@ -1,5 +1,5 @@
 name: ddev-commands
-version: 1.3.3
+version: 1.3.4
 description: "Conjunto de comandos personalizados para Drupal en DDEV."
 author: "Óscar Novás <hola@oscarnovas.com>"
 maintainer: "Óscar Novás <hola@oscarnovas.com>"
@@ -27,17 +27,18 @@ pre_install_actions: []
 
 post_install_actions:
   - |
-    # 1. Asegurarse de que la carpeta de destino existe
-    mkdir -p .agents
-
-    # 2. Copiar archivos usando rsync
-    # -a: modo archivo (mantiene permisos)
-    # -v: verbose
-    # IMPORTANTE: No usamos --delete, por lo que los archivos locales se mantienen
-    rsync -av .ddev/agents/ .agents/
-
-    # 3. Limpiar la carpeta temporal
-    rm -rf .ddev/agents
+    # Detectar si estamos dentro de .ddev o en la raíz
+    if [ -d "agents" ]; then
+        # Estamos dentro de .ddev
+        mkdir -p ../.agents
+        rsync -av agents/ ../.agents/
+        rm -rf agents
+    elif [ -d ".ddev/agents" ]; then
+        # Estamos en la raíz del proyecto
+        mkdir -p .agents
+        rsync -av .ddev/agents/ .agents/
+        rm -rf .ddev/agents
+    fi
 
     echo "✅ Skills actualizadas. Tus archivos locales en .agents/ no han sido tocados."
   - echo "Addon ddev-drupal-tools instalado correctamente."
