@@ -19,12 +19,28 @@ project_files:
   - commands/web/sass
   - config.drupal-tools.yaml
   - web-build/Dockerfile.ddev-drupal-tools
+  - source: .agents/
+    dest: agents_tmp/
 
 global_files: []
 
 pre_install_actions: []
 
 post_install_actions:
+  - |
+    # 1. Asegurarse de que la carpeta de destino existe
+    mkdir -p ../.agents
+
+    # 2. Copiar archivos usando rsync
+    # -a: modo archivo (mantiene permisos)
+    # -v: verbose
+    # IMPORTANTE: No usamos --delete, por lo que los archivos locales se mantienen
+    rsync -av .ddev/agents_tmp/ ../.agents/
+
+    # 3. Limpiar la carpeta temporal
+    rm -rf .ddev/agents_tmp
+
+    echo "✅ Skills actualizadas. Tus archivos locales en .agents/ no han sido tocados."
   - echo "Addon ddev-drupal-tools instalado correctamente."
   - echo "Ejecuta 'ddev restart' para aplicar los cambios."
 

@@ -1,7 +1,6 @@
 # Archivos de diferentes IDEs.
 /.idea/
 /.vscode/**
-!/.vscode/tasks.json
 *.un~
 
 # Archivos del SO.

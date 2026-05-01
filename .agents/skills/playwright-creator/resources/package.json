@@ -1,0 +1,21 @@
+{
+  "name": "{{PROJECT_NAME}}-playwright-tests",
+  "version": "1.0.0",
+  "description": "Playwright end-to-end tests for Drupal",
+
+  "scripts": {
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "npx playwright test --debug",
+    "test:report": "npx playwright show-report ./tests/playwright/_report",
+    "postinstall": "npx playwright install --with-deps"
+  },
+
+  "devDependencies": {
+    "@axe-core/playwright": "latest",
+    "@playwright/test": "latest",
+    "@types/node": "latest",
+    "dotenv": "latest",
+    "typescript": "latest"
+  }
+}
