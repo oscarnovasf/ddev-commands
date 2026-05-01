@@ -2,6 +2,17 @@
 ---
 Todos los cambios notables de este proyecto se documentarán en este archivo.
 
+* ## [v1.3.1] - 2026-05-01
+  > Corrección en el instalador y documentación.
+
+  * #### Correcciones:
+    - Corregido error de sintaxis en `install.yaml` que impedía la instalación del addon.
+    - Corregidas las rutas de sincronización de la carpeta `.agents/`.
+
+  * #### Añadido:
+    - Documentación de la sección de "Skills para IAs" en el README.
+
+---
 * ## [v1.3.0] - 2026-05-01
   > Sistema de agentes/skills y mejoras en la instalación.
 
