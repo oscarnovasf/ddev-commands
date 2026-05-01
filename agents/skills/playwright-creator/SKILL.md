@@ -27,8 +27,8 @@ Si el proyecto no tiene la estructura de Playwright configurada, utiliza los arc
    - `./resources/_config/` → `[project-root]/tests/playwright/_config/`
    - `./resources/_shared/` → `[project-root]/tests/playwright/_shared/`
 
-2. **Configurar Entorno:** En el nuevo `tests/playwright/_config/environment.ts`, reemplazar los placeholders:
-   - `{{PROJECT_NAME}}`: Nombre del proyecto para DDEV (ej: `onovas`).
+2. **Configurar placeholders:** Revisar los archivos copiados y reemplazar los siguientes placeholders de forma global:
+   - `{{PROJECT_NAME}}`: Nombre del proyecto para DDEV (ej: `onovas`). Aparece en `package.json` y `environment.ts`.
    - `{{DOMAIN}}`: Dominio base para entornos (ej: `oscarnovas.com`).
    - `{{MANAGER_PASS}}` / `{{USER_PASS}}`: Contraseñas de test.
 

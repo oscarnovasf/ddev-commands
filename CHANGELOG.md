@@ -2,6 +2,13 @@
 ---
 Todos los cambios notables de este proyecto se documentarán en este archivo.
 
+* ## [v1.3.5] - 2026-05-01
+  > Mejora en las instrucciones de la skill playwright-creator.
+
+  * #### Cambios:
+    - Actualizada la documentación de la skill `playwright-creator` para indicar que el reemplazo de placeholders debe realizarse de forma global en todos los archivos de recursos.
+
+---
 * ## [v1.3.4] - 2026-05-01
   > Corrección de rutas en la instalación.
 
