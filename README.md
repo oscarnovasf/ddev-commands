@@ -195,13 +195,26 @@ Analiza las carpetas:
 
 ---
 
+## Skills para IAs
+
+Este addon incluye una carpeta `.agents/` con "skills" diseñadas para asistentes de IA (como Antigravity, Cursor o Copilot). Estas skills proporcionan contexto, instrucciones y patrones de código específicos para que la IA pueda ayudarte mejor en tareas complejas.
+
+- **Sincronización inteligente**: Durante la instalación o actualización del addon, las nuevas skills se sincronizan automáticamente.
+- **Respeto a lo local**: El proceso utiliza `rsync` para añadir nuevas skills o actualizar las existentes, pero **nunca borrará** archivos que hayas creado tú localmente dentro de `.agents/`.
+
+#### Skills incluidas:
+- **playwright-creator**: Patrones y herramientas para la creación de tests E2E con Playwright en Drupal.
+
+---
+
 ## Estructura del proyecto
 
 ```
 ddev-commands/
+├── .agents/                 # Skills, comandos, instrucciones para IA.
 ├── commands/
 │   ├── host/
-│   │   ├── backup            # Backup de base de datos
+│   │   ├── backup           # Backup de base de datos
 │   │   └── run              # Abrir el sitio en el navegador con login automático
 │   └── web/
 │       ├── behat            # Pruebas funcionales
