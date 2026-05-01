@@ -2,6 +2,13 @@
 ---
 Todos los cambios notables de este proyecto se documentarán en este archivo.
 
+* ## [v1.3.6] - 2026-05-01
+  > Limpieza del repositorio.
+
+  * #### Correcciones:
+    - Eliminada definitivamente la carpeta obsoleta `.agents/` del repositorio, manteniendo únicamente la nueva carpeta `agents/`.
+
+---
 * ## [v1.3.5] - 2026-05-01
   > Mejora en las instrucciones de la skill playwright-creator.
 
