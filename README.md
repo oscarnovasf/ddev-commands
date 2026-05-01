@@ -211,7 +211,7 @@ Este addon incluye una carpeta `.agents/` con "skills" diseñadas para asistente
 
 ```
 ddev-commands/
-├── .agents/                 # Skills, comandos, instrucciones para IA.
+├── agents/                  # Skills, comandos, instrucciones para IA.
 ├── commands/
 │   ├── host/
 │   │   ├── backup           # Backup de base de datos
@@ -246,8 +246,8 @@ ddev restart
 
 [mi-web]: https://oscarnovas.com "for developers"
 
-[version]: v1.3.1
-[version-badge]: https://img.shields.io/badge/Versión-1.3.1-blue.svg
+[version]: v1.3.2
+[version-badge]: https://img.shields.io/badge/Versión-1.3.2-blue.svg
 
 [license]: .github/LICENSE.md
 [license-badge]: https://img.shields.io/badge/Licencia-GPLv3+-green.svg "Leer la licencia"

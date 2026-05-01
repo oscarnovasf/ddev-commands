@@ -2,6 +2,14 @@
 ---
 Todos los cambios notables de este proyecto se documentarán en este archivo.
 
+* ## [v1.3.2] - 2026-05-01
+  > Fix definitivo para la sincronización de agentes.
+
+  * #### Correcciones:
+    - Renombrada carpeta `.agents/` a `agents/` en el repositorio para evitar que sea ignorada por el instalador de DDEV.
+    - Actualizados los scripts de post-instalación para manejar el nuevo nombre de la carpeta origen.
+
+---
 * ## [v1.3.1] - 2026-05-01
   > Corrección en el instalador y documentación.
 
