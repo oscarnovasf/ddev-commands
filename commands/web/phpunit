@@ -5,6 +5,8 @@
 ## Usage: phpunit [suite]
 ## Example: ddev phpunit unit
 
+set -eu -o pipefail
+
 # ##############################################################################
 # VARIABLES AUXILIARES.
 # ##############################################################################
@@ -42,4 +44,20 @@ fi
 # CUERPO PRINCIPAL DEL SCRIPT.
 ################################################################################
 
-php -d xdebug.remote_port=9003 /var/www/html/vendor/bin/phpunit -c /var/www/html/phpunit.xml --testsuite "$@"
+# CHECK for local config.
+if [ -f "phpunit.xml" ]; then
+  # Defer to local config
+  phpunit "$@"
+else
+  # Check if we are running a specific test or test folder.
+  if [ $# -gt 0 ] && [ -e "$1" ]; then
+    TEST_PATH="$1"
+    shift
+    phpunit --bootstrap $PWD/$DDEV_DOCROOT/core/tests/bootstrap.php "$TEST_PATH" "$@"
+  else
+    # Run all custom module tests.
+    phpunit --bootstrap $PWD/$DDEV_DOCROOT/core/tests/bootstrap.php $DDEV_DOCROOT/$DRUPAL_PROJECTS_PATH "$@"
+  fi
+fi
+
+# php -d xdebug.remote_port=9003 /var/www/html/vendor/bin/phpunit -c /var/www/html/phpunit.xml --testsuite "$@"

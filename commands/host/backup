@@ -5,7 +5,7 @@
 ## Usage: backup
 ## Example: ddev backup
 
-set -e
+set -eu -o pipefail
 
 PROJECT_ROOT=$(ddev describe --json | grep -o '"rootdir": *"[^"]*"' | cut -d'"' -f4)
 BACKUP_DIR="${PROJECT_ROOT}/_backups"

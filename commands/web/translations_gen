@@ -1,0 +1,252 @@
+#!/bin/bash
+#ddev-generated
+
+## Description: Generar traducciones para módulos/temas personalizados.
+## Usage: translations_gen
+## Example: ddev translations_gen
+
+set -eu -o pipefail
+
+# ##############################################################################
+# VARIABLES AUXILIARES.
+# ##############################################################################
+
+# Colores.
+RESET="\033[0m"
+YELLOW="\033[0;33m"
+RED="\033[0;31m"
+GREEN="\033[0;32m"
+CYAN="\033[0;36m"
+
+# Control de tiempo de ejecución.
+START=$(date +%s)
+
+# Variables para almacenar los parámetros:
+declare -a languages=()
+declare -a modules=()
+declare -a themes=()
+
+################################################################################
+# CONFIGURACIÓN DEL SCRIPT.
+################################################################################
+
+# Idiomas a generar. Se detectan automáticamente desde Drupal.
+languages=()
+
+# Ruta base de Drupal.
+DRUPAL_ROOT="web"
+
+################################################################################
+# FUNCIONES AUXILIARES.
+################################################################################
+
+# Simplemente imprime una línea por pantalla.
+function linea() {
+  echo '--------------------------------------------------------------------------------'
+}
+
+# Muestra la cabecera de algunas respuestas del script.
+function show_header() {
+  linea
+  echo -e " ${GREEN}Script de generación de traducciones para Drupal${RESET}"
+  linea
+  echo " "
+}
+
+# Muestra la ayuda del script.
+function show_usage() {
+  clear
+  show_header
+  echo -e "
+    Sintaxis del script:
+      $0 [-m módulo] [-t tema] [-h]
+
+    Lista de parámetros/argumentos aceptados:
+      ${YELLOW}-m módulo${RESET}      Genera traducciones solo para web/modules/custom/módulo.
+      ${YELLOW}-t tema${RESET}        Genera traducciones solo para web/themes/custom/tema.
+      ${YELLOW}-h|--help${RESET}      Muestra esta ayuda del script.
+
+    Sin opciones, descubre automáticamente módulos y temas cuyo .info.yml contenga \"interface translation\".
+  "
+}
+
+# Mensaje de finalización del script.
+function show_bye() {
+  # Calculo el tiempo de ejecución y muestro mensaje de final del script.
+  END=$(date +%s)
+  RUNTIME=$((END-START))
+
+  echo " "
+  echo " "
+  linea
+  echo -e " ${YELLOW}Tiempo de ejecución:${RESET} ${GREEN}${RUNTIME}s${RESET}"
+  linea
+  echo " "
+  exit 0
+}
+
+# Manejador de señal para salida limpia con Ctrl+C.
+function handle_interrupt() {
+  echo ""
+  echo -e "${CYAN}[$(date '+%Y-%m-%d %H:%M:%S')]${RESET} Señal de interrupción recibida..."
+  show_bye
+}
+
+# Comprueba el número de parámetros pasados al script.
+function get_params() {
+  while getopts ":m:t:h" option; do
+    case "$option" in
+      m)
+        modules+=("$OPTARG")
+        ;;
+      t)
+        themes+=("$OPTARG")
+        ;;
+      h)
+        show_usage
+        exit 0
+        ;;
+      :)
+        echo -e "${RED}La opción -$OPTARG requiere un valor.${RESET}" >&2
+        show_usage >&2
+        exit 1
+        ;;
+      \?)
+        echo -e "${RED}Opción no válida: -$OPTARG${RESET}" >&2
+        show_usage >&2
+        exit 1
+        ;;
+    esac
+  done
+
+  shift $((OPTIND - 1))
+
+  if [[ $# -gt 0 ]]; then
+    echo -e "${RED}Argumentos no reconocidos: $*${RESET}" >&2
+    show_usage >&2
+    exit 1
+  fi
+
+  # Si no se especifican módulos ni temas, descubrir dinámicamente.
+  if [[ ${#modules[@]} -eq 0 && ${#themes[@]} -eq 0 ]]; then
+    for dir in "$DRUPAL_ROOT/modules/custom/"*/; do
+      [ -d "$dir" ] || continue
+      name=$(basename "$dir")
+      if grep -rq "interface translation" "$dir"*.info.yml 2>/dev/null; then
+        modules+=("$name")
+      fi
+    done
+    for dir in "$DRUPAL_ROOT/themes/custom/"*/; do
+      [ -d "$dir" ] || continue
+      name=$(basename "$dir")
+      if grep -rq "interface translation" "$dir"*.info.yml 2>/dev/null; then
+        themes+=("$name")
+      fi
+    done
+  fi
+}
+
+################################################################################
+# FUNCIONES DE TRADUCCIÓN.
+################################################################################
+
+# Detecta los idiomas instalados en Drupal, excluyendo el inglés.
+function get_installed_languages() {
+  local output=""
+
+  if ! output=$(drush -r "$DRUPAL_ROOT" php:eval 'foreach (\Drupal::service("language_manager")->getLanguages() as $language) { echo $language->getId() . PHP_EOL; }' 2>/dev/null); then
+    echo -e "${YELLOW}No se han podido detectar los idiomas instalados desde Drupal. Se omite la generación automática.${RESET}" >&2
+    return 0
+  fi
+
+  while IFS= read -r language; do
+    [[ -z "$language" ]] && continue
+    [[ "$language" == "en" ]] && continue
+
+    if [[ " ${languages[*]} " != *" $language "* ]]; then
+      languages+=("$language")
+    fi
+  done <<< "$output"
+}
+
+# Función para generar traducciones.
+function translate() {
+  local type="$1"
+  local name="$2"
+  local language="$3"
+
+  echo " "
+  echo -e "${CYAN}[$(date '+%Y-%m-%d %H:%M:%S')]${RESET} Generando traducciones para ${GREEN}${type}/${name}${RESET} en idioma ${YELLOW}${language}${RESET}..."
+
+  if [[ "$type" == "modules" ]]; then
+    drush -r "$DRUPAL_ROOT" potx single --modules="$name" --api=9 --language="$language" --translations || true
+  else
+    drush -r "$DRUPAL_ROOT" potx single --folder="themes/custom/$name" --api=9 --language="$language" --translations || true
+  fi
+
+  # Corregir el archivo .pot generado:
+  if [ -f "web/general.pot" ]; then
+    sed -i 's/nplurals=INTEGER/nplurals=2/g' web/general.pot
+    sed -i 's/plural=EXPRESSION/plural=(n!=1)/g' web/general.pot
+
+    # Mover al directorio correcto
+    mkdir -p "web/$type/custom/$name/translations/"
+    mv web/general.pot "web/$type/custom/$name/translations/$language.po"
+    echo -e "${GREEN}✓${RESET} Traducción generada en web/$type/custom/$name/translations/$language.po"
+  else
+    echo -e "${RED}✗${RESET} No se pudo generar el archivo de traducción para ${type}/${name} en ${language}"
+  fi
+}
+
+################################################################################
+# COMPROBACIONES PREVIAS.
+################################################################################
+
+# Capturar Ctrl+C para salida limpia.
+trap handle_interrupt SIGINT SIGTERM
+
+
+################################################################################
+# CUERPO PRINCIPAL DEL SCRIPT.
+################################################################################
+
+# Obtengo los posibles parámetros:
+get_params "$@"
+
+show_header
+
+get_installed_languages
+
+# Mostrar resumen de lo que se va a procesar:
+if [[ ${#modules[@]} -gt 0 ]]; then
+  echo -e "${CYAN}Módulos a procesar:${RESET} ${GREEN}${modules[*]}${RESET}"
+fi
+if [[ ${#themes[@]} -gt 0 ]]; then
+  echo -e "${CYAN}Temas a procesar:${RESET} ${GREEN}${themes[*]}${RESET}"
+fi
+
+if [[ ${#languages[@]} -eq 0 ]]; then
+  echo -e "${YELLOW}No se han detectado idiomas adicionales instalados en Drupal (solo 'en').${RESET}"
+  show_bye
+fi
+
+echo -e "${CYAN}Idiomas:${RESET} ${GREEN}${languages[*]}${RESET}"
+echo ""
+
+# Procesar módulos:
+for module in "${modules[@]}"; do
+  for language in "${languages[@]}"; do
+    translate "modules" "$module" "$language"
+  done
+  echo ""
+done
+
+# Procesar temas:
+for theme in "${themes[@]}"; do
+  for language in "${languages[@]}"; do
+    translate "themes" "$theme" "$language"
+  done
+  echo ""
+done
+
+show_bye

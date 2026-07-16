@@ -2,8 +2,48 @@
 #ddev-generated
 
 ## Description: Revisar enlaces rotos en el sitio.
-## Usage: linkchecker
+## Usage: linkchecker [url]
 ## Example: ddev linkchecker
+## Example: ddev linkchecker https://ejemplo.com
+
+set -eu -o pipefail
+
+# ##############################################################################
+# VARIABLES AUXILIARES.
+# ##############################################################################
+
+# Colores.
+RESET="\033[0m"
+YELLOW="\033[0;33m"
+RED="\033[0;31m"
+
+################################################################################
+# FUNCIONES AUXILIARES.
+################################################################################
+
+# Simplemente imprime una línea por pantalla.
+function linea() {
+  echo '--------------------------------------------------------------------------------'
+}
+
+################################################################################
+# COMPROBACIONES PREVIAS.
+################################################################################
+
+if ! command -v linkchecker &>/dev/null; then
+  clear
+  echo " "
+  linea
+  echo -e " ${RED}Error: linkchecker no está instalado.${RESET}"
+  echo -e " ${YELLOW}Comprueba que este add-on está bien instalado.${RESET}"
+  linea
+  echo " "
+  exit 1
+fi
+
+################################################################################
+# CUERPO PRINCIPAL DEL SCRIPT.
+################################################################################
 
 linkchecker \
   --no-status \
@@ -15,4 +55,4 @@ linkchecker \
   --ignore-url="^mailto:" \
   --ignore-url=".*\.(css|js)$" \
   --user-agent="Mozilla/5.0 (compatible; linkchecker)" \
-  https://${DDEV_HOSTNAME}
+  ${1:-https://${DDEV_HOSTNAME}}

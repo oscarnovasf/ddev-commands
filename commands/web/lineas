@@ -5,6 +5,45 @@
 ## Usage: lineas
 ## Example: ddev lineas
 
+set -eu -o pipefail
+
+# ##############################################################################
+# VARIABLES AUXILIARES.
+# ##############################################################################
+
+# Colores.
+RESET="\033[0m"
+YELLOW="\033[0;33m"
+RED="\033[0;31m"
+
+################################################################################
+# FUNCIONES AUXILIARES.
+################################################################################
+
+# Simplemente imprime una línea por pantalla.
+function linea() {
+  echo '--------------------------------------------------------------------------------'
+}
+
+################################################################################
+# COMPROBACIONES PREVIAS.
+################################################################################
+
+if ! command -v cloc &>/dev/null; then
+  clear
+  echo " "
+  linea
+  echo -e " ${RED}Error: cloc no está instalado.${RESET}"
+  echo -e " ${YELLOW}Comprueba que este add-on está bien instalado.${RESET}"
+  linea
+  echo " "
+  exit 1
+fi
+
+################################################################################
+# CUERPO PRINCIPAL DEL SCRIPT.
+################################################################################
+
 echo && echo "Líneas de Módulos:" && echo && cloc /var/www/html/web/modules/custom
 echo && echo "Líneas de Themes:" && echo && cloc /var/www/html/web/themes/custom
 echo && echo "Líneas Globales:" && echo && cloc /var/www/html/web/modules/custom /var/www/html/web/themes/custom
