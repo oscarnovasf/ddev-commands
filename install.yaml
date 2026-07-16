@@ -7,8 +7,6 @@ license: "GPL-3.0"
 
 project_files:
   - commands/host/backup
-  - commands/host/run
-  - commands/web/behat
   - commands/web/cr
   - commands/web/grumphp
   - commands/web/lineas
@@ -27,22 +25,23 @@ pre_install_actions: []
 
 post_install_actions:
   - |
-    # Detectar si estamos dentro de .ddev o en la raíz
-    if [ -d "agents" ]; then
-        # Estamos dentro de .ddev
-        mkdir -p ../.agents
-        rsync -av agents/ ../.agents/
-        rm -rf agents
-    elif [ -d ".ddev/agents" ]; then
-        # Estamos en la raíz del proyecto
-        mkdir -p .agents
-        rsync -av .ddev/agents/ .agents/
-        rm -rf .ddev/agents
-    fi
-
-    echo "✅ Skills actualizadas. Tus archivos locales en .agents/ no han sido tocados."
-  - echo "Addon ddev-drupal-tools instalado correctamente."
-  - echo "Ejecuta 'ddev restart' para aplicar los cambios."
+    _sync_ddev_asset() {
+      local src="$1" dst="$2"
+      if [ -d "$src" ]; then
+        mkdir -p "$dst"
+        rsync -av "$src/" "$dst/"
+        find "$dst" -type f \( -name '*.md' -o -name '*.ts' \) -exec sed -i '' -e '/#ddev-generated/d' {} \; 2>/dev/null || true
+      fi
+    }
+    _sync_ddev_asset "assets/agents" "../.agents"
+    _sync_ddev_asset ".ddev/assets/agents" ".agents"
+    _sync_ddev_asset "assets/github" "../.github"
+    _sync_ddev_asset ".ddev/assets/github" ".github"
+    echo "Assets sincronizados. Tus archivos locales no han sido tocados."
+  - echo "Addon ddev-drupal-tools instalado correctamente. Ejecuta 'ddev restart' para aplicar los cambios."
 
 removal_actions:
-  - echo "Addon ddev-drupal-tools eliminado."
+  - |
+    echo "Addon ddev-drupal-tools desinstalado correctamente."
+    echo "Las skills otros ajustes de IA NO SE HAN ELIMINADO."
+    echo "Si deseas eliminarlos, hazlo manualmente."

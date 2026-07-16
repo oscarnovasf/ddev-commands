@@ -24,4 +24,9 @@ RUN mkdir -p /etc/apt/keyrings \
     && apt-get update && apt-get install -y gum \
     && apt-get clean
 
-RUN npm install -g sass
+RUN npm config set ignore-scripts true
+
+RUN npm install -g \
+  pnpm \
+  sass \
+  skills
