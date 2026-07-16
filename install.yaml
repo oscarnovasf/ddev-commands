@@ -17,7 +17,7 @@ project_files:
   - commands/web/sass
   - config.drupal-tools.yaml
   - web-build/Dockerfile.ddev-drupal-tools
-  - agents/
+  - assets/
 
 global_files: []
 
@@ -38,10 +38,10 @@ post_install_actions:
     _sync_ddev_asset "assets/github" "../.github"
     _sync_ddev_asset ".ddev/assets/github" ".github"
     echo "Assets sincronizados. Tus archivos locales no han sido tocados."
-  - echo "Addon ddev-drupal-tools instalado correctamente. Ejecuta 'ddev restart' para aplicar los cambios."
+  - echo "Addon ddev-commands instalado correctamente. Ejecuta 'ddev restart' para aplicar los cambios."
 
 removal_actions:
   - |
-    echo "Addon ddev-drupal-tools desinstalado correctamente."
+    echo "Addon ddev-commands desinstalado correctamente."
     echo "Las skills otros ajustes de IA NO SE HAN ELIMINADO."
     echo "Si deseas eliminarlos, hazlo manualmente."
