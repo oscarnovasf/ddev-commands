@@ -1,4 +1,8 @@
 #ddev-generated
+---
+applyTo: '**'
+---
+
 # Structure:
 
 Use the 'conventional commit' format for commit messages.
@@ -53,7 +57,7 @@ Use the 'conventional commit' format for commit messages.
 
 ## Examples:
 
-This message is invalid; it repeats concepts in the header and the body; 
+This message is invalid; it repeats concepts in the header and the body;
 the body adds no real value and does not use lists:
 
 ```

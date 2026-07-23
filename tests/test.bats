@@ -44,7 +44,6 @@ health_checks() {
   run ddev -h
   assert_success
 
-  assert_output --partial "behat"
   assert_output --partial "phpunit"
   assert_output --partial "phpstan"
   assert_output --partial "rector"

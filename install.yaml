@@ -35,8 +35,10 @@ post_install_actions:
     }
     _sync_ddev_asset "assets/agents" "../.agents"
     _sync_ddev_asset ".ddev/assets/agents" ".agents"
+
     _sync_ddev_asset "assets/github" "../.github"
     _sync_ddev_asset ".ddev/assets/github" ".github"
+
     echo "Assets sincronizados. Tus archivos locales no han sido tocados."
   - echo "Addon ddev-commands instalado correctamente. Ejecuta 'ddev restart' para aplicar los cambios."
 
